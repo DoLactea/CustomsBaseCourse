@@ -1,0 +1,32 @@
+﻿@model CustomsBase.ViewModels.Customs_werehousesViewModel.Customs_werehousesViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Customs_werehouses</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customs_Werehouses.First().WerehouseID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customs_Werehouses.First().WerehouseID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Customs_werehouseViewModel.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customs_Werehouses.First().Types_of_goods.Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

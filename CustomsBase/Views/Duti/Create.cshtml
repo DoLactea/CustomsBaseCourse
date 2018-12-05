@@ -1,0 +1,45 @@
+﻿@model CustomsBase.Models.Duti
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+    <a asp-area="" asp-controller="Duti" asp-action="Index">Back</a>
+</h3>
+<h2>Create Duti</h2>
+<div class="col-md-4">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Customs_agentID" class="control-label"></label>
+            <select asp-for="Customs_agentID" class="form-control" asp-items="ViewBag.Customs_agentID">
+                <option>Выберите имя агента</option>
+            </select>
+            <span asp-validation-for="Customs_agentID" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Customs_werehouses.Types_of_goods.Name" class="control-label"></label>
+            <input asp-for="Customs_werehouses.Types_of_goods.Name" class="form-control" asp-items="ViewBag.Type_of_GoodsID"/>
+                
+            <span asp-validation-for="Customs_werehouses.Types_of_goods.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Date_receipt" class="control-label"></label>
+            <input asp-for="Date_receipt" class="form-control" />
+            <span asp-validation-for="Date_receipt" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Date_of_payment" class="control-label"></label>
+            <input asp-for="Date_of_payment" class="form-control" />
+            <span asp-validation-for="Date_of_payment" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Date_of_goods_call" class="control-label"></label>
+            <input asp-for="Date_of_goods_call" class="form-control" />
+            <span asp-validation-for="Date_of_goods_call" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add" class="btn btn-default" />
+        </div>
+    </form>
+</div>

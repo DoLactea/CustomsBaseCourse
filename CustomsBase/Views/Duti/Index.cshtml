@@ -1,0 +1,87 @@
+﻿@using CustomsBase.ViewModels.DutiViewModel
+@model DutiesViewModel
+@addTagHelper "*, CustomsBase"
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (!User.IsInRole("user"))
+{<br />
+    @Html.ActionLink("Create", "Create")
+}
+<br />
+<form method="get">
+    <div class="form-inline">
+        <label class="control-label">First Name: </label>
+        @Html.DropDownList("agent", Model.FilterViewModel.Agents as SelectList, htmlAttributes: new { @class = "form-control" })
+        <label class="control-label">Goods Name: </label>
+        @Html.DropDownList("name", Model.FilterViewModel.Names as SelectList, htmlAttributes: new { @class = "form-control" })
+        <input type="submit" value="Filter" class="btn btn-default" />
+    </div>
+    <br /><br />
+</form>
+<table class="table">
+    <tr>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.DutiesIDSort)"
+               asp-route-surname="@(Model.FilterViewModel.SelectedAgent)"
+               asp-route-rate="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.DutiViewModel.DutiesID)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.FirstNameSort)"
+               asp-route-surname="@(Model.FilterViewModel.SelectedAgent)"
+               asp-route-rate="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.DutiViewModel.FirstName)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+               asp-route-surname="@(Model.FilterViewModel.SelectedAgent)"
+               asp-route-rate="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.DutiViewModel.Name)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.Date_receiptSort)"
+               asp-route-surname="@(Model.FilterViewModel.SelectedAgent)"
+               asp-route-rate="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.DutiViewModel.Date_receipt)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.Date_of_paymentSort)"
+               asp-route-surname="@(Model.FilterViewModel.SelectedAgent)"
+               asp-route-rate="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.DutiViewModel.Date_of_payment)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.Date_of_goods_callSort)"
+               asp-route-surname="@(Model.FilterViewModel.SelectedAgent)"
+               asp-route-rate="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.DutiViewModel.Date_of_goods_call)</a>
+        </th>
+    </tr>
+    @foreach (var item in Model.Duties)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.DutiesID)</td>
+            <td>@Html.DisplayFor(modelItem => item.Customs_agents.FirstName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Customs_werehouses.Types_of_goods.Name)</td>
+            <td>@Html.DisplayFor(modelItem => item.Date_receipt)</td>
+            <td>@Html.DisplayFor(modelItem => item.Date_of_payment)</td>
+            <td>@Html.DisplayFor(modelItem => item.Date_of_goods_call)</td>
+            <td>
+                @if (!User.IsInRole("user"))
+                {
+                    <div>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.DutiesID }, null) |
+                        @Html.ActionLink("Details", "Details", new { id = item.DutiesID }, null) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.DutiesID }, null)
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("Details", "Details", new { id = item.DutiesID }, null)
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+</table>
+<page-link page-model="Model.PageViewModel" page-action="Index"
+           page-url-surname="@(Model.FilterViewModel.SelectedAgent)"
+           page-url-rate="@(Model.FilterViewModel.SelectedName)"
+           page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>

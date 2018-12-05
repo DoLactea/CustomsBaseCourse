@@ -1,0 +1,131 @@
+﻿@using CustomsBase.ViewModels.Type_of_GoodViewModel
+@model Type_of_GoodViewModel
+@addTagHelper "*, CustomsBase"
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (!User.IsInRole("user"))
+{
+    <div>
+        <br />
+        @Html.ActionLink("Create", "Create")
+    </div>
+}
+<br />
+<form method="get">
+    <div class="form-inline">
+        <label class="control-label">Goods Name: </label>
+        @Html.TextBox("Name", Model.FilterViewModel.SelectedName, htmlAttributes: new { @class = "form-control" })
+        <input type="submit" value="Filter" class="btn-default" />
+    </div>
+    <br /><br />
+</form>
+<table class="table">
+    <tr>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.Types_of_goodsIDSort)"
+               asp-route-type="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.Type_Of_Good.Types_of_goodsID)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+               asp-route-type="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.Type_Of_Good.Name)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.UnitSort)"
+               asp-route-type="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.Type_Of_Good.Unit)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.Amount_of_dutySort)"
+               asp-route-type="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.Type_Of_Good.Amount_of_duty)</a>
+        </th>
+    </tr>
+    @foreach (var rate in Model.Type_Of_Goods)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => rate.Types_of_goodsID)</td>
+            <td>@Html.DisplayFor(modelItem => rate.Name)</td>
+            <td>@Html.DisplayFor(modelItem => rate.Unit)</td>
+            <td>@Html.DisplayFor(modelItem => rate.Amount_of_duty)</td>
+            <td>
+                @if (!User.IsInRole("user"))
+                {
+                <div>
+                    @Html.ActionLink("Edit", "Edit", new { id = rate.Types_of_goodsID }, null) |
+                    @Html.ActionLink("Details", "Details", new { id = rate.Types_of_goodsID }, null) |
+                    @Html.ActionLink("Delete", "Delete", new { id = rate.Types_of_goodsID }, null)
+                </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("Details", "Details", new { id = rate.Types_of_goodsID }, null) 
+                    </div>
+                }
+            </td>
+        </tr>
+
+    }
+</table>
+<page-link page-model="Model.PageViewModel" page-action="Index"
+           page-url-type="@(Model.FilterViewModel.SelectedName)"
+           page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>
+
+
+
+
+
+
+
+
+
+
+@*<h2>Goods</h2>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type_Of_Good.Types_of_goodsID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type_Of_Good.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type_Of_Good.Unit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type_Of_Good.Amount_of_duty)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Type_Of_Goods)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Types_of_goodsID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Unit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount_of_duty)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Types_of_goodsID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Types_of_goodsID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Types_of_goodsID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <page-link page-model="Model.PageViewModel" page-action="Index"></page-link>*@

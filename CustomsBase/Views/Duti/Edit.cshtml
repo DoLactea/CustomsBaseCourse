@@ -1,0 +1,54 @@
+﻿@model CustomsBase.ViewModels.DutiViewModel.DutiesViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>
+    <a asp-area="" asp-controller="Duti" asp-action="Index">Back</a>
+</h3>
+
+<h2>Edit Duti</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Duties.First().DutiesID" class="control-label"></label>
+                <input asp-for="Duties.First().DutiesID" class="form-control" readonly />
+                <span asp-validation-for="Duties.First().DutiesID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duties.First().Customs_agentID" class="control-label"></label>
+                <select asp-for="Duties.First().Customs_agentID" class="form-control" asp-items="Model.Customs_AgentsList"></select>
+                <span asp-validation-for="Duties.First().Customs_agentID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duties.First().Customs_werehouses.Types_of_goods.Name" class="control-label"></label>
+                <input asp-for="Duties.First().Customs_werehouses.Types_of_goods.Name" class="form-control" />
+                <span asp-validation-for="Duties.First().Customs_werehouses.Types_of_goods.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duties.First().Date_receipt" class="control-label"></label>
+                <input asp-for="Duties.First().Date_receipt" class="form-control" />
+                <span asp-validation-for="Duties.First().Date_receipt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duties.First().Date_of_payment" class="control-label"></label>
+                <input asp-for="Duties.First().Date_of_payment" class="form-control" />
+                <span asp-validation-for="Duties.First().Date_of_payment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duties.First().Date_of_goods_call" class="control-label"></label>
+                <input asp-for="Duties.First().Date_of_goods_call" class="form-control" />
+                <span asp-validation-for="Duties.First().Date_of_goods_call" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+

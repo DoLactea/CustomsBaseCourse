@@ -1,0 +1,20 @@
+﻿@model CustomsBase.Models.Customs_werehouses
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+    <a asp-area="" asp-controller="Customs_werehouses" asp-action="Index">Back</a>
+</h3>
+<h2>Create werehouse</h2>
+<div class="col-md-4">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Types_of_goods.Name" class="control-label"></label>
+            <input asp-for="Types_of_goods.Name" class="form-control" asp-items="ViewBag.Type_of_GoodsID" />
+
+            <span asp-validation-for="Types_of_goods.Name" class="text-danger"></span>
+        </div>
+    </form>
+</div>

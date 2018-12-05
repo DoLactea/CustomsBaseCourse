@@ -1,0 +1,44 @@
+﻿@model CustomsBase.ViewModels.Type_of_GoodViewModel.Type_of_GoodViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Type_of_GoodViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type_Of_Goods.First().Types_of_goodsID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type_Of_Goods.First().Types_of_goodsID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type_Of_Goods.First().Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type_Of_Goods.First().Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type_Of_Goods.First().Unit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type_Of_Goods.First().Unit)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type_Of_Goods.First().Amount_of_duty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type_Of_Goods.First().Amount_of_duty)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

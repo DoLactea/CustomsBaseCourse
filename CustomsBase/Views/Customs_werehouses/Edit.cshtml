@@ -1,0 +1,34 @@
+﻿@model CustomsBase.ViewModels.Customs_werehousesViewModel.Customs_werehousesViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>
+    <a asp-area="" asp-controller="Customs_werehouses" asp-action="Index">Back</a>
+</h3>
+
+<h2>Edit Werehouse</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Customs_Werehouses.First().WerehouseID" class="control-label"></label>
+                <input asp-for="Customs_Werehouses.First().WerehouseID" class="form-control" readonly />
+                <span asp-validation-for="Customs_Werehouses.First().WerehouseID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customs_Werehouses.First().Types_of_goods.Name" class="control-label"></label>
+                <input asp-for="Customs_Werehouses.First().Types_of_goods.Name" class="form-control" />
+                <span asp-validation-for="Customs_Werehouses.First().Types_of_goods.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+

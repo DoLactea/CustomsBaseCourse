@@ -1,0 +1,30 @@
+﻿@model CustomsBase.Models.Customs_agents
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+    <a asp-area="" asp-controller="Customs_agents" asp-action="Index">Back</a>
+</h3>
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.FirstName, "First Name")
+    <br />
+    @Html.EditorFor(model => model.FirstName)
+    <br /><br />
+    @Html.LabelFor(model => model.SecondName, "Second Name")
+    <br />
+    @Html.EditorFor(model => model.SecondName)
+    @Html.ValidationMessageFor(model => model.SecondName)
+    <br /><br />
+    @Html.LabelFor(model => model.Serves, "Which warehouse serves")
+    <br />
+    @Html.EditorFor(model => model.Serves)
+    @Html.ValidationMessageFor(model => model.Serves)
+    <br /><br />
+    <input type="submit" value="Add" />
+}
+

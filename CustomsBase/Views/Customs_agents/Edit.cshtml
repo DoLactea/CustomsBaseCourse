@@ -1,0 +1,34 @@
+﻿@model CustomsBase.Models.Customs_agents
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+    <a asp-area="" asp-controller="Customs_agents" asp-action="Index">Back</a>
+</h3>
+<h2>Edit agent № @Model.Customs_agentID</h2>
+@using (Html.BeginForm("Edit", "Customs_agents", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(c => c.Customs_agentID)
+        <p>
+            @Html.LabelFor(c => c.FirstName, "First Name")
+            <br />
+            @Html.EditorFor(c => c.FirstName)
+        </p>
+        <p>
+            @Html.LabelFor(c => c.SecondName, "Second Name")
+            <br />
+            @Html.EditorFor(c => c.SecondName)
+        </p>
+        <p>
+            @Html.LabelFor(c => c.Serves, "Which warehouse serves")
+            <br />
+            @Html.EditorFor(c => c.Serves)
+        </p>
+        <p>
+            <input type="submit" value="Edit"/>
+        </p>
+    </fieldset>
+}
+

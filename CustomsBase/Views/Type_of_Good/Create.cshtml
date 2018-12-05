@@ -1,0 +1,28 @@
+﻿@model CustomsBase.Models.Type_of_Good
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+    <a asp-area="" asp-controller="Type_of_Good" asp-action="Index">Back</a>
+</h3>
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model=> model.Name, "Goods Name")
+    <br/>
+    @Html.EditorFor(model=>model.Name)
+    <br/><br/>
+    @Html.LabelFor(model=> model.Unit, "Unit")
+    <br/>
+    @Html.EditorFor(model=>model.Unit)
+    <br/><br/>
+    @Html.LabelFor(model=> model.Amount_of_duty, "Amount of duty")
+    <br/>
+    @Html.EditorFor(model=>model.Amount_of_duty)
+    <br/><br/>
+    <input type="submit" value="Add"/>
+}
+

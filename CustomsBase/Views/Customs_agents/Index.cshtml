@@ -1,0 +1,72 @@
+﻿@using CustomsBase.ViewModels.Customs_agentsViewModel
+@model Customs_agentsViewModel
+@addTagHelper "*, CustomsBase"
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (!User.IsInRole("user"))
+{
+    <div>
+        <br />
+        @Html.ActionLink("Create", "Create")
+    </div>
+}
+<br />
+<form method="get">
+    <div class="form-inline">
+        <label class="control-label">First Name: </label>
+        @Html.TextBox("firstName", Model.FilterViewModel.SelectedfirstName, htmlAttributes: new { @class = "form-control" })
+        <input type="submit" value="Filter" class="btn-default" />
+    </div>
+    <br /><br />
+</form>
+<table class="table">
+    <tr>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.Customs_agentIDSort)"
+               asp-route-type="@(Model.FilterViewModel.SelectedfirstName)">@Html.DisplayNameFor(model => model.Customs_agents.Customs_agentID)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.FirstNameSort)"
+               asp-route-type="@(Model.FilterViewModel.SelectedfirstName)">@Html.DisplayNameFor(model => model.Customs_agents.FirstName)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.SecondNameSort)"
+               asp-route-type="@(Model.FilterViewModel.SelectedfirstName)">@Html.DisplayNameFor(model => model.Customs_agents.SecondName)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.ServesSort)"
+               asp-route-type="@(Model.FilterViewModel.SelectedfirstName)">@Html.DisplayNameFor(model => model.Customs_agents.Serves)</a>
+        </th>
+    </tr>
+    @foreach (var rate in Model.Customs_Agents)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => rate.Customs_agentID)</td>
+            <td>@Html.DisplayFor(modelItem => rate.FirstName)</td>
+            <td>@Html.DisplayFor(modelItem => rate.SecondName)</td>
+            <td>@Html.DisplayFor(modelItem => rate.Serves)</td>
+            <td>
+                @if (!User.IsInRole("user"))
+                {
+                    <div>
+                        @Html.ActionLink("Edit", "Edit", new { id = rate.Customs_agentID }, null) |
+                        @Html.ActionLink("Details", "Details", new { id = rate.Customs_agentID }, null) |
+                        @Html.ActionLink("Delete", "Delete", new { id = rate.Customs_agentID }, null)
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("Details", "Details", new { id = rate.Customs_agentID }, null)
+                    </div>
+                }
+            </td>
+        </tr>
+
+    }
+</table>
+<page-link page-model="Model.PageViewModel" page-action="Index"
+           page-url-type="@(Model.FilterViewModel.SelectedfirstName)"
+           page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>

@@ -1,0 +1,52 @@
+﻿@model CustomsBase.ViewModels.DutiViewModel.DutiesViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>
+    <a asp-area="" asp-controller="Duti" asp-action="Index">Back</a>
+</h3>
+
+<div>
+    <h4>DutiViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Duties.First().DutiesID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Duties.First().DutiesID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DutiViewModel.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Duties.First().Customs_agents.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DutiViewModel.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Duties.First().Customs_werehouses.Types_of_goods.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Duties.First().Date_receipt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Duties.First().Date_receipt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Duties.First().Date_of_payment)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Duties.First().Date_of_payment)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Duties.First().Date_of_goods_call)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Duties.First().Date_of_goods_call)
+        </dd>
+    </dl>
+</div>

@@ -1,0 +1,34 @@
+﻿@model CustomsBase.Models.Type_of_Good
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+    <a asp-area="" asp-controller="Type_of_Good" asp-action="Index">Back</a>
+</h3>
+<h2>Edit goods № @Model.Types_of_goodsID</h2>
+@using (Html.BeginForm("Edit", "Type_of_Good", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(c => c.Types_of_goodsID)
+        <p>
+            @Html.LabelFor(c => c.Name, "Goods Name")
+            <br />
+            @Html.EditorFor(c => c.Name)
+        </p>
+        <p>
+            @Html.LabelFor(c => c.Unit, "Unit")
+            <br />
+            @Html.EditorFor(c => c.Unit)
+        </p>
+        <p>
+            @Html.LabelFor(c => c.Amount_of_duty, "Amount of duty")
+            <br />
+            @Html.EditorFor(c => c.Amount_of_duty)
+        </p>
+        <p>
+            <input type="submit" value="Edit"/>
+        </p>
+    </fieldset>
+}
+

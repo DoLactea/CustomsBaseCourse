@@ -1,0 +1,61 @@
+﻿@using CustomsBase.ViewModels.Customs_werehousesViewModel
+@model Customs_werehousesViewModel
+@addTagHelper "*, CustomsBase"
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (!User.IsInRole("user"))
+{
+    <div>
+        <br />
+        @Html.ActionLink("Create", "Create")
+    </div>
+}
+<br />
+<form method="get">
+    <div class="form-inline">
+        <label class="control-label">Goods Name: </label>
+        @Html.DropDownList("name", Model.FilterViewModel.Names as SelectList, htmlAttributes: new { @class = "form-control" })
+        <input type="submit" value="Filter" class="btn btn-default" />
+    </div>
+    <br /><br />
+</form>
+<table class="table">
+    <tr>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.WerehouseIDSort)"
+               asp-route-rate="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.Customs_werehouseViewModel.WerehouseID)</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+               asp-route-rate="@(Model.FilterViewModel.SelectedName)">@Html.DisplayNameFor(model => model.Customs_werehouseViewModel.Name)</a>
+        </th>
+    </tr>
+    @foreach (var item in Model.Customs_Werehouses)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.WerehouseID)</td>
+            <td>@Html.DisplayFor(modelItem => item.Types_of_goods.Name)</td>
+            <td>
+                @if (!User.IsInRole("user"))
+                {
+                    <div>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.WerehouseID }, null) |
+                        @Html.ActionLink("Details", "Details", new { id = item.WerehouseID }, null) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.WerehouseID }, null)
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("Details", "Details", new { id = item.WerehouseID }, null) 
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+</table>
+<page-link page-model="Model.PageViewModel" page-action="Index"
+           page-url-rate="@(Model.FilterViewModel.SelectedName)"
+           page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>

@@ -1,0 +1,47 @@
+﻿@model CustomsBase.Models.Customs_agents
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>
+    <a asp-area="" asp-controller="Customs_agents" asp-action="Index">Back</a>
+</h3>
+
+<h2>Agent № @Model.Customs_agentID</h2>
+<table>
+    <tr>
+        <td>
+            @Html.LabelFor(model=>model.Customs_agentID,"Agent ID")
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Customs_agentID)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.FirstName, "First Name")
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.FirstName)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.SecondName, "Second Name")
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.SecondName)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Serves, "Which warehouse serves")
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Serves)
+        </td>
+    </tr>
+</table>
+
+
